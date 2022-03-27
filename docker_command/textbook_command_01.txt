@@ -1,0 +1,137 @@
+
+
+1. MySQL and wordpress Link
+
+> mysql
+
+docker run -d \
+--name my_wordpressdb \
+-e MYSQL_ROOT_PASSWORD=4321 \
+-e MYSQL_DATABASE=wordpress \
+mysql
+
+
+
+> wordpress
+
+docker run -d \
+-e WORDPRESS_DB_HOST=mysql \
+-e WORDPRESS_DB_USER=root \
+-e WORDPRESS_DB_PASSWORD=4321 \
+--name my_wordpress \
+--link my_wordpressdb:mysql \
+-p 80 \
+wordpress
+
+
+
+
+
+2. MySQL and wordpress Link (2)
+>> port binding
+
+> mysql
+
+docker run -d \
+--name my_wordpressdb \
+-e MYSQL_ROOT_PASSWORD=4321 \
+-e MYSQL_DATABASE=wordpress \
+mysql
+
+
+
+> wordpress
+
+docker run -d \
+-e WORDPRESS_DB_HOST=mysql \
+-e WORDPRESS_DB_USER=root \
+-e WORDPRESS_DB_PASSWORD=4321 \
+--name my_wordpress \
+--link my_wordpressdb:mysql \
+-p 55735:80 \
+wordpress
+
+woy#tP7IsQtD$FxMmz
+
+
+
+
+
+
+3. MySQL and wordpress Link (3)
+>> volume
+>> path : /Users/folaflor/Desktop/coding/project_2022y/study_docker/volumes
+(
+실패: volumes 위에 그냥 데이터가 씌여짐.
+volumes/mysql_data 식으로 세부 폴더를 확실히 명시할 것
+)
+
+> mysql
+
+docker run -d \
+--name my_wordpressdb_hostvolume \
+-e MYSQL_ROOT_PASSWORD=4321 \
+-e MYSQL_DATABASE=wordpress \
+-v /Users/folaflor/Desktop/coding/project_2022y/study_docker/volumes:/var/lib/mysql \
+mysql
+
+
+
+> wordpress
+
+docker run -d \
+-e WORDPRESS_DB_HOST=mysql \
+-e WORDPRESS_DB_USER=root \
+-e WORDPRESS_DB_PASSWORD=4321 \
+--name my_wordpress_hostvolume \
+--link my_wordpressdb_hostvolume:mysql \
+-p 55735:80 \
+wordpress
+
+
+
+
+
+
+
+4. MySQL and wordpress Link (4)
+>> volume
+>> path : /Users/folaflor/Desktop/coding/project_2022y/study_docker/volumes/wordpress_db
+
+
+>>
+(
+실패: volumes 위에 그냥 데이터가 씌여짐.
+volumes/mysql_data 식으로 세부 폴더를 확실히 명시할 것
+-> 수정
+)
+
+>>
+컨테이너 삭제 후 같은 명령어로 재 생성했을 때 워드프레스 데이터가 살아있음
+워드프레스의 데이터는 (적어도 블로그 포스팅 데이터는 확실하게)
+워드프레스 컨테이너가 아닌 연결된 db 컨테이너에 저장되는것으로 보임임
+
+
+> mysql
+
+docker run -d \
+--name my_wordpressdb_hostvolume \
+-e MYSQL_ROOT_PASSWORD=4321 \
+-e MYSQL_DATABASE=wordpress \
+-v /Users/folaflor/Desktop/coding/project_2022y/study_docker/volumes/wordpress_db:/var/lib/mysql \
+mysql
+
+
+
+> wordpress
+
+docker run -d \
+-e WORDPRESS_DB_HOST=mysql \
+-e WORDPRESS_DB_USER=root \
+-e WORDPRESS_DB_PASSWORD=4321 \
+--name my_wordpress_hostvolume \
+--link my_wordpressdb_hostvolume:mysql \
+-p 55735:80 \
+wordpress
+
+pw : #vUFNHgyy34b7s54#%
