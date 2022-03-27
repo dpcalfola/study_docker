@@ -1,3 +1,14 @@
+# --- my setting start from here ---
+# .idea
+.idea
+
+# docker volume mount
+volumes/
+
+# --- my setting ends here ---
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +138,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
