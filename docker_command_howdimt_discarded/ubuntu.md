@@ -15,3 +15,7 @@ apt-get install net-tools -y
 apt-get install neovim -y
 apt-get install openssh-server -y
 ```
+
+> 2
+>
+
