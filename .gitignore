@@ -142,3 +142,7 @@ dmypy.json
 
 # hide_dir
 /hide_dir
+
+
+#.DS_Store
+.DS_Store
