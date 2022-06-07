@@ -48,7 +48,7 @@ docker run \
 -i -t \
 --privileged=true \
 --name CentStream9 \
--v /home/fola/dockerVolumes/FolaCentStream9_home:/home \
+-v ~/docker_volume/FolaCentStream9_home:/home \
 -p 54984:22 \
 quay.io/centos/centos:stream9
 ```
