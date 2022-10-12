@@ -20,8 +20,17 @@ docker run \
 -v fola_studio_postgres:/var/lib/postgresql/data \
 -p ${FOLA_POSTGRES_PORT}:5432 \
 -e POSTGRES_DB=${FOLA_POSTGRES_DB} \
--e POSTGRES_USER=${FOLA_POSTGRES_DB} \
+-e POSTGRES_USER=${FOLA_POSTGRES_USER} \
 -e POSTGRES_PASSWORD=${FOLA_POSTGRES_PASSWORD} \
 -d \
-postgres:15rc2-alpine3.16
+postgres:15rc2-alpine3.16 && \
+docker ps
+```
+
+* Command to discard all this container data 
+```shell
+docker stop fola_studio_postgres ; \
+docker rm fola_studio_postgres ; \
+docker volume rm fola_studio_postgres ; \
+docker rmi postgres:15rc2-alpine3.16
 ```
