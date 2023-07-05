@@ -34,3 +34,17 @@ docker rm fola_studio_postgres ; \
 docker volume rm fola_studio_postgres ; \
 docker rmi postgres:15rc2-alpine3.16
 ```
+
+#### postgres run command for interview
+
+```shell
+docker run \
+--name fola_studio_postgres_interview \
+-p 5432:5432 \
+-e POSTGRES_DB=interview_postgres \
+-e POSTGRES_USER=interview_postgres_user \
+-e POSTGRES_PASSWORD=interview_password \
+-d \
+postgres:15.2-bullseye
+docker ps
+```
